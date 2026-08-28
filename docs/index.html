@@ -2,7 +2,8 @@
 <html lang="zh-Hant">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
 <title>地平線與門檻：Spielrein 與 Vygotsky 互補性的文本發生學與結構同構分析</title>
 <meta name="description" content="Spielrein 在發展學中的沒落與 Vygotsky 的 affect in concept 困境，是同一個切斷的兩面。">
 <style>
@@ -14,8 +15,10 @@
     --accent2: #0e7490;
     --border: #e5e7eb;
     --code-bg: #f3f4f6;
+    --radius: 16px;
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
   body {
     margin: 0;
     background: var(--bg);
@@ -24,81 +27,104 @@
     line-height: 1.85;
     font-size: 17px;
     -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
   }
-  a { color: var(--accent2); text-decoration: none; border-bottom: 1px solid rgba(14,116,144,0.25); }
+  a { color: var(--accent2); text-decoration: none; border-bottom: 1px solid rgba(14,116,144,0.25); word-break: break-word; }
   a:hover { border-bottom-color: var(--accent2); }
+  img, svg { max-width: 100%; height: auto; }
   .topbar {
-    position: sticky; top: 0; z-index: 10;
-    backdrop-filter: blur(8px);
-    background: rgba(253,252,249,0.85);
+    position: sticky; top: 0; z-index: 20;
+    backdrop-filter: blur(10px) saturate(180%);
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    background: rgba(253,252,249,0.88);
     border-bottom: 1px solid var(--border);
   }
   .topbar-inner {
-    max-width: 860px; margin: 0 auto; padding: 10px 20px;
+    max-width: 860px; margin: 0 auto; padding: 10px 16px;
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 13px; color: var(--muted);
+    font-size: 13px; color: var(--muted); gap: 12px;
   }
-  .topbar a { border: none; color: var(--muted); }
+  .topbar a { border: none; color: var(--muted); white-space: nowrap; }
+  .brand { font-weight: 700; letter-spacing: 0.02em; }
   header.hero {
-    max-width: 860px; margin: 0 auto; padding: 56px 20px 24px;
+    max-width: 860px; margin: 0 auto; padding: 48px 20px 24px;
   }
   .kicker {
-    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--accent); font-weight: 700; margin-bottom: 14px;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700; margin-bottom: 12px; line-height: 1.5;
   }
   h1 {
-    font-size: 32px; line-height: 1.25; margin: 0 0 14px;
-    font-weight: 800; letter-spacing: -0.02em;
+    font-size: clamp(22px, 5vw, 32px); line-height: 1.25; margin: 0 0 14px;
+    font-weight: 800; letter-spacing: -0.02em; word-break: break-word;
   }
   .subtitle {
-    font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 18px;
+    font-size: clamp(13px, 2.8vw, 15px); color: var(--muted); line-height: 1.7; margin-bottom: 18px;
     border-left: 3px solid var(--accent); padding-left: 12px;
   }
   .meta {
-    display: flex; flex-wrap: wrap; gap: 10px 18px;
-    font-size: 13px; color: var(--muted); margin-top: 18px;
+    display: flex; flex-wrap: wrap; gap: 8px 14px;
+    font-size: 12.5px; color: var(--muted); margin-top: 16px; align-items: center;
   }
   .meta span { display: inline-flex; align-items: center; gap: 6px; }
   .pill {
-    display: inline-block; font-size: 12px; padding: 3px 8px;
-    border: 1px solid var(--border); border-radius: 999px; background: white;
+    display: inline-block; font-size: 11px; padding: 3px 8px;
+    border: 1px solid var(--border); border-radius: 999px; background: white; white-space: nowrap;
   }
   .layout {
     max-width: 860px; margin: 0 auto; padding: 0 20px 80px;
-    display: grid; grid-template-columns: 1fr; gap: 32px;
+    display: grid; grid-template-columns: 1fr; gap: 28px;
   }
   @media (min-width: 980px) {
     .layout { grid-template-columns: 200px 1fr; }
   }
+  /* TOC */
   nav.toc {
     position: sticky; top: 64px; align-self: start;
     font-size: 13px; line-height: 1.6;
   }
-  nav.toc h3 { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
-  nav.toc a { display: block; padding: 4px 0; color: #374151; border: none; }
+  nav.toc h3 { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; display:flex; justify-content:space-between; align-items:center; }
+  nav.toc a { display: block; padding: 5px 0; color: #374151; border: none; }
   nav.toc a:hover { color: var(--accent2); }
-  nav.toc .toc-note { margin-top: 14px; padding: 10px; background: white; border: 1px solid var(--border); border-radius: 10px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+  nav.toc .toc-note { margin-top: 14px; padding: 12px; background: white; border: 1px solid var(--border); border-radius: 12px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .toc-toggle {
+    display: none; background: white; border: 1px solid var(--border); border-radius: 8px;
+    padding: 6px 10px; font-size: 12px; color: var(--muted); cursor: pointer;
+  }
+  /* Content */
   article.content {
-    background: white; border: 1px solid var(--border); border-radius: 16px;
+    background: white; border: 1px solid var(--border); border-radius: var(--radius);
     padding: 28px 26px; box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+    min-width: 0; overflow-wrap: break-word; word-break: break-word;
   }
   article.content h2 {
-    font-size: 22px; margin: 36px 0 14px; padding-top: 8px;
-    border-top: 1px solid var(--border);
+    font-size: clamp(18px, 4vw, 22px); margin: 36px 0 14px; padding-top: 12px;
+    border-top: 1px solid var(--border); line-height: 1.35;
   }
   article.content h2:first-of-type { border-top: none; margin-top: 0; }
-  article.content h3 { font-size: 17px; margin: 22px 0 10px; }
-  article.content p { margin: 12px 0; text-align: justify; hyphens: auto; }
+  article.content h3 { font-size: clamp(15px, 3.5vw, 17px); margin: 22px 0 10px; line-height: 1.4; }
+  article.content p { margin: 12px 0; text-align: justify; hyphens: auto; overflow-wrap: break-word; }
   article.content blockquote {
     margin: 16px 0; padding: 12px 16px; background: #f9fafb;
-    border-left: 3px solid var(--accent2); color: #374151; font-size: 15px;
+    border-left: 3px solid var(--accent2); color: #374151; font-size: 14.5px; overflow-wrap: break-word;
   }
-  article.content code { background: var(--code-bg); padding: 1px 5px; border-radius: 6px; font-size: 0.9em; }
-  article.content pre { background: #0b1020; color: #e5e7eb; padding: 16px; border-radius: 12px; overflow: auto; font-size: 13px; line-height: 1.6; }
-  article.content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
-  article.content th, article.content td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; }
+  article.content code { background: var(--code-bg); padding: 1px 5px; border-radius: 6px; font-size: 0.88em; word-break: break-all; }
+  article.content pre { background: #0b1020; color: #e5e7eb; padding: 16px; border-radius: 12px; overflow: auto; font-size: 13px; line-height: 1.6; -webkit-overflow-scrolling: touch; }
+  article.content pre code { background: transparent; padding: 0; word-break: normal; }
+  article.content table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; display: table; }
+  article.content th, article.content td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
   article.content th { background: #f9fafb; font-weight: 700; }
-  .mermaid { background: #f9fafb; border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin: 18px 0; text-align: center; }
+  article.content ul, article.content ol { padding-left: 1.4em; }
+  article.content li { margin: 6px 0; }
+  /* Mermaid */
+  .mermaid {
+    background: #f9fafb; border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px; margin: 18px 0; text-align: center;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+  }
+  .mermaid svg { max-width: none; height: auto; display: block; margin: 0 auto; }
+  /* Callouts */
   .callout {
     background: #fefce8; border: 1px solid #fde68a; border-radius: 12px;
     padding: 14px 16px; font-size: 14px; line-height: 1.7; margin: 18px 0;
@@ -114,17 +140,48 @@
     font-size: 13px; color: var(--muted); text-align: center;
   }
   .btn {
-    display: inline-block; padding: 8px 14px; border-radius: 999px;
-    background: var(--fg); color: white; font-size: 13px; border: none;
+    display: inline-block; padding: 10px 16px; border-radius: 999px;
+    background: var(--fg); color: white; font-size: 13px; border: none; text-decoration: none;
   }
   .btn:hover { background: #111; color: white; }
+  /* Mobile */
+  @media (max-width: 768px) {
+    body { font-size: 15.5px; line-height: 1.75; }
+    header.hero { padding: 28px 16px 16px; }
+    .layout { padding: 0 16px 40px; gap: 16px; }
+    nav.toc {
+      position: static; background: white; border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px 14px 10px; box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .toc-toggle { display: inline-flex; align-items: center; gap: 6px; }
+    nav.toc .toc-links { display: none; margin-top: 10px; }
+    nav.toc.open .toc-links { display: block; }
+    nav.toc .toc-note { margin-top: 12px; }
+    article.content { padding: 20px 16px; border-radius: 12px; }
+    article.content p { text-align: left; hyphens: none; }
+    article.content table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; white-space: nowrap; }
+    article.content table th, article.content table td { white-space: normal; min-width: 120px; }
+    .mermaid { padding: 12px 8px; margin: 16px -4px; border-radius: 10px; }
+    .topbar-inner { padding: 10px 14px; font-size: 12px; }
+    .kicker { font-size: 10.5px; }
+  }
+  @media (max-width: 380px) {
+    h1 { font-size: 20px; }
+    .meta { gap: 6px 10px; }
+    .pill { font-size: 10.5px; padding: 2px 7px; }
+  }
+  /* Print */
+  @media print {
+    .topbar, nav.toc, footer.blogfoot .btn { display: none; }
+    body { background: white; font-size: 12pt; }
+    article.content { box-shadow: none; border: none; padding: 0; }
+    .layout { display: block; }
+  }
 </style>
-<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-<script>mermaid.initialize({startOnLoad:true, theme:'base', themeVariables:{primaryColor:'#fff', primaryBorderColor:'#e5e7eb', lineColor:'#6b7280'}});</script>
 </head>
 <body>
 <div class="topbar"><div class="topbar-inner">
-  <span>psych-text-analysis · 論文部落格</span>
+  <span class="brand">psych-text-analysis · 論文部落格</span>
   <span><a href="#top">回到頂部 ↑</a></span>
 </div></div>
 
@@ -147,25 +204,27 @@
 </header>
 
 <div class="layout">
-  <nav class="toc">
-    <h3>目錄</h3>
-    <a href="#intro">導論：從相似性比較到缺口對稱</a>
-    <a href="#ch1">一 · Spielrein 在發展學中的沒落</a>
-    <a href="#ch2">二 · Vygotsky 的起點：從社會集體湧現自我</a>
-    <a href="#ch3">三 · 樞紐：Piaget 所刪為何</a>
-    <a href="#ch4">四 · Destruction vs Catharsis → affect in concept</a>
-    <a href="#ch5">五 · 互探：現象有／機制無</a>
-    <a href="#ch6">六 · 三謂詞與背景層</a>
-    <a href="#ch7">七 · timeless 與 developmental 同屬一個系統</a>
-    <a href="#ch8">八 · 結構同構</a>
-    <a href="#ch9">九 · 可證偽性</a>
-    <a href="#conclusion">結論</a>
-    <a href="#refs">參考文獻</a>
-    <div class="toc-note">
-      <b>閱讀提示</b><br>
-      本文為獨立論文，全篇以原文直引為證據，不依賴行號。建議先讀摘要與導論，再按章節跳讀。
-      <br><br>
-      <a href="./horizon-threshold-complementarity-paper.md" style="color:var(--accent2);">↗ 閱讀 Markdown 原文</a>
+  <nav class="toc" id="toc">
+    <h3>目錄 <button class="toc-toggle" id="tocToggle" aria-expanded="false" aria-controls="tocLinks">☰ 展開</button></h3>
+    <div class="toc-links" id="tocLinks">
+      <a href="#_1">摘要</a>
+      <a href="#_2">導論：從相似性比較到缺口對稱</a>
+      <a href="#spielrein-kinesthetic">一 · Spielrein 在發展學中的沒落</a>
+      <a href="#vygotsky">二 · Vygotsky 的起點：從社會集體湧現自我</a>
+      <a href="#piaget">三 · 樞紐：Piaget 所刪為何</a>
+      <a href="#destruction-as-the-cause-of-becoming-catharsis-affect-in-concept-catharsis">四 · Destruction vs Catharsis → affect in concept</a>
+      <a href="#_3">五 · 互探：現象有／機制無</a>
+      <a href="#_4">六 · 三謂詞與背景層</a>
+      <a href="#timeless-developmental">七 · timeless 與 developmental 同屬一個系統</a>
+      <a href="#_5">八 · 結構同構</a>
+      <a href="#_6">九 · 可證偽性</a>
+      <a href="#_7">結論</a>
+      <div class="toc-note">
+        <b>閱讀提示</b><br>
+        本文為獨立論文，全篇以原文直引為證據，不依賴行號。建議先讀摘要與導論，再按章節跳讀。
+        <br><br>
+        <a href="./horizon-threshold-complementarity-paper.md" style="color:var(--accent2);">↗ 閱讀 Markdown 原文</a>
+      </div>
     </div>
   </nav>
 
@@ -189,23 +248,24 @@
 <p>Spielrein 的起點則相反，不是社會集體，而是種—我們。她寫道：「I was led to believe that the main characteristic of the individual consists in being a 'dividual' [ein Dividuum]. The closer we get to conscious thinking, the more differentiated our mental representations; the deeper we enter into the unconscious, the more general, more [arche]typal they become. The depth of our psyche knows no 'I,' it only knows its summation, the 'We'; or the current I, viewed as an object, becomes subordinate to other similar objects」。在此，集體不是社會，而是種：「The collective psyche strives to turn the ego-psyche into an impersonal, [arche]typal one」，而生成是「The drowned ego-particle surfaces richer than before, adorned with new representations」。自我經由種的溶解與重生而被構成，詞是此溶解—重生的載體。</p>
 <p>Piaget 切掉的，正是連接此兩種集體性的中介操作：magical 作為詞的超額意義與召喚能力，動態無意識作為情感—身體的生成維度，kinesthetic 作為身體基底。切斷後，Vygotsky 的社會集體失去身體的根，Spielrein 的種—我們失去社會的完成。</p>
 <p>為論證此一對稱，本文不引入外部哲學，亦不依賴實證測量，而是嚴格運用兩人自己的方法論進行互證。Spielrein 在《Some Analogies》中提出跨領域同律對照，兒童、失語症與夢在同一操作下顯現同一規律；Vygotsky 在《思維與言語》第五章與第七章提出以詞義為單位的發生學分析。以此方法對照兩人的困境，本身即是方法論的自我驗證。論證分三步：發生學追溯以引文證明 Piaget 所刪是文本事實，結構同構以方法對方法證明被切斷的兩端本屬同一操作，互探以現象有而機制無的分布證明切斷而非自足。三者構成三角互證，任一角被證偽則整體推翻。</p>
-<pre><code class="language-mermaid">flowchart TB
-    subgraph Problem[&quot;對稱的兩個困境&quot;]
-        S[&quot;Spielrein 在發展學中的沒落&lt;br/&gt;有身體→詞，無社會→意識&lt;br/&gt;kinesthetic 被刪，只剩精神分析&lt;br/&gt;起點：Species-We&quot;]
-        V[&quot;Vygotsky 的 affect in concept 困境&lt;br/&gt;有詞→意識，無身體→詞&lt;br/&gt;perezhivanie bodyless&lt;br/&gt;起點：Social Collective&quot;]
+<div class="mermaid">
+flowchart TB
+    subgraph Problem["對稱的兩個困境"]
+        S["Spielrein 在發展學中的沒落<br/>有身體→詞，無社會→意識<br/>kinesthetic 被刪，只剩精神分析<br/>起點：Species-We"]
+        V["Vygotsky 的 affect in concept 困境<br/>有詞→意識，無身體→詞<br/>perezhivanie bodyless<br/>起點：Social Collective"]
     end
-    subgraph Hinge[&quot;樞紐&quot;]
-        P[&quot;Piaget 一九二〇—一九二三&lt;br/&gt;刪 magical / 改寫無意識 / 去身體化&quot;]
+    subgraph Hinge["樞紐"]
+        P["Piaget 一九二〇—一九二三<br/>刪 magical / 改寫無意識 / 去身體化"]
     end
-    subgraph Method[&quot;三角互證&quot;]
-        M1[&quot;發生學追溯&lt;br/&gt;引文對照&quot;]
-        M2[&quot;結構同構&lt;br/&gt;方法對方法&quot;]
-        M3[&quot;互探&lt;br/&gt;現象有/機制無&quot;]
+    subgraph Method["三角互證"]
+        M1["發生學追溯<br/>引文對照"]
+        M2["結構同構<br/>方法對方法"]
+        M3["互探<br/>現象有/機制無"]
     end
-    S &amp; V --&gt; P
-    P --&gt; M1 &amp; M2 &amp; M3
-    M1 &amp; M2 &amp; M3 --&gt;|&quot;一個系統兩個邊界&quot;| S &amp; V
-</code></pre>
+    S & V --> P
+    P --> M1 & M2 & M3
+    M1 & M2 & M3 -->|"一個系統兩個邊界"| S & V
+</div>
 <hr />
 <h2 id="spielrein-kinesthetic">第一章 Spielrein 在發展學中的沒落：被刪去的 kinesthetic，只剩精神分析</h2>
 <p>Spielrein 的發展學貢獻在今日常被誤讀為精神分析的前史，這一誤讀本身即是 Piaget 刪改的後果。回到她的文本，她的起點不是驅力理論，而是詞的發生學。</p>
@@ -239,11 +299,12 @@
 <p>Vygotsky 在一九二五年《藝術心理學》中提出 catharsis 作為生成的另一種表述。他的定義是：「To Vygotsky, catharsis is not simply the release of overwhelming affective attractions liberated, through art, from their 'evil qualities.' It is rather the resolution of a certain, merely personal conflict, the revelation of a higher, more general, human truth in the phenomena of life」。其機制是情感的矛盾與形式的克服：「Affective Contradiction and the Beginning of Antithesis. Catharsis. Rejection of the Content of Form」。形式毀滅內容，情感經由形式被重寫，而非被消除。他在此已意識到此公式的未完成：「The disclosure of the content of this formula of art as catharsis must remain outside the scope of this book. ... Before this can be done, further investigations in the areas of the various different arts would be needed」。</p>
 <p>兩種生成在操作上同一：皆主張毀滅不是消除，而是 recoding，舊單位被毀，charge 換新 carrier，新生在形式的重寫中湧現。差異在於集體的位置。Spielrein 的集體在下，作為種的質料，timeless 的供料，We 提供質料；Vygotsky 的集體在上，作為社會的形式，developmental 的立法，社會提供形式。Spielrein 的毀滅是種經由個體的自我毀滅而更新，Vygotsky 的 catharsis 是個體經由形式的自我克服而上升。兩者互補為背景與前景。</p>
 <p>Affect in concept 則是 catharsis 之後的出現。Vygotsky 在一九三〇年代初的筆記中明確將兩者連為同一機制的延續：「Freedom: the affect in the concept」與「The affect is overcome by the affect. And the basis is not thinking but desire」，以及「Spinoza's theory implicite contains the whole acmeistic psychology」與「To understand the affect is an active condition and is freedom」。如果說 catharsis 是情感經由藝術形式被重寫，那麼 affect in concept 就是情感經由概念形式被重寫。前者處理藝術中的情感轉化，後者處理思維中的情感轉化，兩者共享同一原則：情感不被消滅，而是被 recode 到新形式。此一延續在文本上可驗：Vygotsky 在《藝術心理學》後幾乎不再以 catharsis 為題，卻在筆記中以 Spinoza 的 affectus 重提同一問題，並以「concept = affect = will」的 acmeist 單位作為門檻後的新單位。Catharsis 因此不是被拋棄，而是被翻譯為 affect in concept，從美學的生成理論轉為意識的生成理論。</p>
-<pre><code class="language-mermaid">flowchart LR
-    D[&quot;毀滅&lt;br/&gt;舊單位解體&quot;] --&gt; R[&quot;Recoding&lt;br/&gt;charge 換 carrier&quot;]
-    R --&gt; N1[&quot;Spielrein: Species-We&lt;br/&gt;We 永恆質料&lt;br/&gt;Background 常在&lt;br/&gt;Destruction as Becoming&quot;]
-    R --&gt; N2[&quot;Vygotsky: Social Collective&lt;br/&gt;社會形式&lt;br/&gt;Foreground 決定&lt;br/&gt;Catharsis → Affect in Concept&quot;]
-</code></pre>
+<div class="mermaid">
+flowchart LR
+    D["毀滅<br/>舊單位解體"] --> R["Recoding<br/>charge 換 carrier"]
+    R --> N1["Spielrein: Species-We<br/>We 永恆質料<br/>Background 常在<br/>Destruction as Becoming"]
+    R --> N2["Vygotsky: Social Collective<br/>社會形式<br/>Foreground 決定<br/>Catharsis → Affect in Concept"]
+</div>
 <hr />
 <h2 id="_3">第五章 互探：兩人各自觸及對方的命題，卻說不清對方的機制</h2>
 <p>切斷而非自足的證明，在於互探。所謂互探，指每一端都持有對岸的現象描述，卻缺乏對岸的機制說明。現象的富餘與機制的缺口恰好鏡像，證明被切斷的是一個完整發生學路線的上下半段，而非兩個自足體系的並列。</p>
@@ -259,34 +320,36 @@
 <p>哲學詞彙向心理操作的翻譯在此完成。Timeless 操作化為 before-object，對象範疇尚不存在的狀態，如 Spielrein 的「there is neither time, nor place, nor opposites... therefore an eternal Being」；developmental 操作化為 after-object，曾是對象但被排除的狀態，如 Vygotsky 的「exclusion from the general course of development: an immobile point」。前者是前範疇的，後者是後範疇的，兩者不是同一區分的兩面，而是不同區分在同一背景層上的前後狀態。</p>
 <p>所謂背景層，需特別澄清，因為它最易被誤讀為哲學隱喻或 Freud 式深度。背景層不是隱喻，而是心理操作層，指詞成為概括與概念之前的那個身體—情感基底，功能是滋養前景而非被前景決定。Spielrein 以極具體意象定義它：「Subconscious visual–kinetic images nourish [donne la sève] our conscious thoughts. Without them our thought would be uprooted, 'stripped down'」，如樹液之於樹。前景則是經由詞展開的概括、系統與意識建構，兩者關係不是深度與表面的垂直關係，而是圖與底的關係。Vygotsky 在晚期筆記反覆以 figure-ground 描述高級機能對低級機能的關係，低級機能不是被消滅而是退為背景，以收縮與從屬形式繼續存在於新結構之中。背景層因此不是被超越的過去，而是當下仍在運行的平行軌。</p>
 <p>正是在此意義上，Spielrein 的 substrate 與 Vygotsky 的 unconscious 是同一背景層在門檻前後的兩種狀態。門檻前為平行滋養態，常在而非過去；門檻後為凍結排除態，被前景排除而凍結。Timeless 源頭無法直接進入 developmental，必須經由背景層翻譯為 kinesthetic images、affect 等 developmental 產物，再進入詞與意識。</p>
-<pre><code class="language-mermaid">flowchart LR
-    subgraph Hdef[&quot;Horizon 三謂詞&quot;]
-        H1[&quot;融合&lt;br/&gt;水=空氣&lt;br/&gt;區分失效&quot;]
-        H2[&quot;回歸&lt;br/&gt;尋求溶解&lt;br/&gt;吸引子&quot;]
-        H3[&quot;平行&lt;br/&gt;double encoding&lt;br/&gt;同時並行&quot;]
+<div class="mermaid">
+flowchart LR
+    subgraph Hdef["Horizon 三謂詞"]
+        H1["融合<br/>水=空氣<br/>區分失效"]
+        H2["回歸<br/>尋求溶解<br/>吸引子"]
+        H3["平行<br/>double encoding<br/>同時並行"]
     end
-    subgraph Tdef[&quot;Threshold 三謂詞&quot;]
-        T1[&quot;單位失效&lt;br/&gt;word meaning&lt;br/&gt;無法分析情感&quot;]
-        T2[&quot;領域入口&lt;br/&gt;思維→意識&lt;br/&gt;新單位&quot;]
-        T3[&quot;派生&lt;br/&gt;immobile point&lt;br/&gt;被生產&quot;]
+    subgraph Tdef["Threshold 三謂詞"]
+        T1["單位失效<br/>word meaning<br/>無法分析情感"]
+        T2["領域入口<br/>思維→意識<br/>新單位"]
+        T3["派生<br/>immobile point<br/>被生產"]
     end
-    Hdef -.-&gt;|&quot;操作化&quot;| O1[&quot;timeless = before-object&lt;br/&gt;對象範疇尚不存在&quot;]
-    Tdef -.-&gt;|&quot;操作化&quot;| O2[&quot;developmental = after-object&lt;br/&gt;曾是對象但被排除&quot;]
-    O1 &amp; O2 --&gt; S[&quot;同一 background 背景層&lt;br/&gt;門檻前後的兩種狀態&lt;br/&gt;平行滋養 vs 凍結排除&quot;]
-</code></pre>
+    Hdef -.->|"操作化"| O1["timeless = before-object<br/>對象範疇尚不存在"]
+    Tdef -.->|"操作化"| O2["developmental = after-object<br/>曾是對象但被排除"]
+    O1 & O2 --> S["同一 background 背景層<br/>門檻前後的兩種狀態<br/>平行滋養 vs 凍結排除"]
+</div>
 <hr />
 <h2 id="timeless-developmental">第七章 如何論證 timeless 與 developmental 同屬一個系統</h2>
 <p>即使兩端共享操作與載體，timeless 與 developmental 是否根本不可共量，仍是關鍵質疑。本章論證，系統同一性不在階段同一，而在同一背景層的兩種時間體制，且完全可在兩人文本中找到依據。</p>
 <p>第一個支點是 Vygotsky 自己已區分兩種時間。文化歷史理論從一開始即建立在自然線與文化線、低級機能與高級機能的區分之上，一人同時擁有兩種時間，這不是後加詮釋而是理論基本架構。既然一人可同時擁有兩種時間，timeless 與 developmental 同屬一個系統便不再矛盾，問題只在兩種時間在系統中的位置。</p>
 <p>第二個支點是 substrate 與 unconscious 是同一背景層的前後狀態，而非兩個本體。所謂背景層，指的不是 Freud 式先存深度，而是圖與底關係中的底，是詞成為概括之前的那個身體—情感基底。Spielrein 將此層描述為平行軌，以 donne la sève 滋養意識：「Subconscious visual–kinetic images nourish [donne la sève] our conscious thoughts. Without them our thought would be uprooted, 'stripped down'」，且「simultaneously lives in the present, the past, and the future, i.e., outside of time」；Vygotsky 將同一層的另一種狀態描述為被排除凍結的不動點：「Repression to the unconscious means in the first place exclusion from the general course of development: an immobile point in development. The unconscious does not develop」，且「The relationship consciousness—the unconscious takes shape around the age of seven years. The history of child morals is the history of the basic suppressing agent」，被排除者如月亮般「shines with borrowed light」。前者是門檻前平行滋養態，後者是門檻後凍結排除態，兩者不是兩個並列實體而是同一層前後存在方式。Vygotsky 以 figure-ground 描述此關係，低級機能退為背景以收縮與從屬形式繼續存在。這一區分極清晰，Vygotsky 否定的是 Freud 式先存實體，而非 Spielrein 式平行滋養基底。</p>
 <p>第三個支點是翻譯器的存在。Timeless 源頭無法直接進入 developmental，必須經由背景層翻譯為 kinesthetic images 與 affect 等產物，再經由載體鏈身體經聲音、網絡到詞再到概念，每一步皆是 timeless 質料被 developmental 形式 recoding 的過程。沒有翻譯器，horizon 質料無法進入 threshold 建構工地；沒有 horizon 供料，threshold 建構則空轉。</p>
-<pre><code class="language-mermaid">flowchart LR
-    H[&quot;Horizon&lt;br/&gt;timeless&lt;br/&gt;We/Species&lt;br/&gt;before-object&quot;]
-    S[&quot;Substrate&lt;br/&gt;平行軌&lt;br/&gt;翻譯器&lt;br/&gt;donne la sève&quot;]
-    T[&quot;Threshold&lt;br/&gt;developmental&lt;br/&gt;I/Height&lt;br/&gt;after-object&quot;]
-    H --&gt; S --&gt; T
-    H -.-|&quot;不同軸線&lt;br/&gt;不直接相連&quot;| T
-</code></pre>
+<div class="mermaid">
+flowchart LR
+    H["Horizon<br/>timeless<br/>We/Species<br/>before-object"]
+    S["Substrate<br/>平行軌<br/>翻譯器<br/>donne la sève"]
+    T["Threshold<br/>developmental<br/>I/Height<br/>after-object"]
+    H --> S --> T
+    H -.-|"不同軸線<br/>不直接相連"| T
+</div>
 <p>系統同一性在此獲得精確定義：不在階段同一，不在時間體制同一，而在四重不變量。第一，同一載體，詞在兩端皆被否定為外部標籤，Spielrein 的「the word did not mean an action, it was the action itself」與 Vygotsky 的「The word is comparable to the living cell... a unit of sound and meaning」共享同一本體論承諾。第二，同一操作，黏著與雜交在兩端以不同名稱出現，Spielrein 的 perseveration、crossing 與 Vygotsky 的 chain、diffuse、pseudoconcept 是同一發生學操作的不同顯現。第三，同一情感引擎，情感在兩端皆為跨越的操作子，Spielrein 的 affect drives persistence 與 Vygotsky 的「Freedom: the affect in the concept」是同一情感在不同載體上的連續運動。第四，同一背景層的兩種狀態，substrate 與 unconscious 是同一層前後的平行滋養與凍結排除。四重中任一項被證偽，系統同一性即被動搖。</p>
 <hr />
 <h2 id="_5">第八章 結構同構：以兩人的方法證兩人的互補</h2>
@@ -328,5 +391,105 @@
   <p>本文為獨立學術論文，引文皆為原文直引。 · 生成於 psych-text-analysis · 2026-08-28</p>
   <p><a class="btn" href="./horizon-threshold-complementarity-paper.md">下載 Markdown</a></p>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+// Mobile TOC toggle
+(function() {
+  const toc = document.getElementById('toc');
+  const btn = document.getElementById('tocToggle');
+  const links = document.getElementById('tocLinks');
+  if (btn && toc) {
+    // On mobile, collapsed by default; on desktop, always open
+    function isMobile() { return window.innerWidth <= 768; }
+    function update() {
+      if (!isMobile()) {
+        toc.classList.add('open');
+        links.style.display = '';
+        btn.style.display = 'none';
+      } else {
+        btn.style.display = 'inline-flex';
+        // keep current open state
+      }
+    }
+    btn.addEventListener('click', () => {
+      const open = toc.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.textContent = open ? '✕ 收合' : '☰ 展開';
+    });
+    // Close TOC when clicking a link on mobile
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (isMobile() && toc.classList.contains('open')) {
+          toc.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          btn.textContent = '☰ 展開';
+        }
+      });
+    });
+    window.addEventListener('resize', update);
+    update();
+  }
+})();
+
+// Mermaid: responsive + error handling
+(function() {
+  if (typeof mermaid === 'undefined') return;
+  mermaid.initialize({
+    startOnLoad: false,
+    theme: 'base',
+    themeVariables: {
+      primaryColor: '#ffffff',
+      primaryBorderColor: '#e5e7eb',
+      primaryTextColor: '#1f2937',
+      lineColor: '#6b7280',
+      secondaryColor: '#f3f4f6',
+      tertiaryColor: '#fdfcf9',
+      fontFamily: 'Noto Serif TC, Source Han Serif TC, Georgia, serif',
+      fontSize: '13px'
+    },
+    flowchart: { htmlLabels: true, useMaxWidth: true, curve: 'basis' },
+    securityLevel: 'loose'
+  });
+  // Render all .mermaid divs
+  function renderMermaid() {
+    const nodes = document.querySelectorAll('.mermaid');
+    if (!nodes.length) return;
+    // Ensure each has unique id
+    nodes.forEach((el, i) => {
+      if (!el.id) el.id = 'mermaid-' + i;
+    });
+    mermaid.run({ nodes: nodes }).catch(err => {
+      console.warn('Mermaid render error:', err);
+      // Fallback: show raw text
+      nodes.forEach(el => {
+        if (!el.querySelector('svg')) {
+          el.style.whiteSpace = 'pre-wrap';
+          el.style.fontFamily = 'monospace';
+          el.style.fontSize = '12px';
+          el.style.textAlign = 'left';
+        }
+      });
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderMermaid);
+  } else {
+    renderMermaid();
+  }
+  // Re-render on resize for responsiveness (debounced)
+  let t;
+  window.addEventListener('resize', () => {
+    clearTimeout(t);
+    t = setTimeout(() => {
+      // Mermaid SVGs are responsive via useMaxWidth, no need to re-render
+      // But ensure overflow handling
+      document.querySelectorAll('.mermaid').forEach(el => {
+        el.style.maxWidth = '100%';
+      });
+    }, 200);
+  });
+})();
+</script>
 </body>
 </html>
