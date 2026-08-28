@@ -15,6 +15,17 @@
 
 **關鍵詞**：Spielrein；Vygotsky；Piaget；horizon；threshold；kinesthetic；affect in concept；perezhivanie；catharsis；Destruction as the Cause of Becoming
 
+> **術語說明**（首次出現時亦有懸浮提示）
+>
+> - **perezhivanie**（俄語 переживание，英譯 *emotional experience*）：Vygotsky 晚期核心單位，指環境與個人特質不可分的統一體——既是環境在個人身上的折射，也是個人對環境的體驗方式。本文強調其分子態（*microscopic, molecular*）與 *bodyless* 結構：有環境—自我的不可分性，卻無身體—詞的生成性。
+> - **kinesthetic images / kinesthetic substrate**：Spielrein 指身體—動覺意象，詞的身體基底，以「*donne la sève*」（法語「給予汁液」）滋養意識思想的樹液層。
+> - **affect in concept**：Vygotsky 晚期公式「*Freedom: the affect in the concept*」，指情感被納入概念而獲得自由，與早期 *catharsis* 同屬 *recoding*（情感換載體）。
+> - **acmeist / acmeistic psychology**：Vygotsky 晚期以 Spinoza 為資源提出的「頂峰心理學」，主張 *concept = affect = will* 的統一。
+> - **Species-We / Social Collective**：Spielrein 的種—我們（種的集體，永恆質料）vs Vygotsky 的社會集體（人際間的集體，歷史形式），兩種集體性。
+> - **before-object / after-object**：本文對 *timeless* / *developmental* 的操作化翻譯——前者指對象範疇尚不存在，後者指曾是對象但被排除而凍結。
+
+
+
 ---
 
 ## 導論：從相似性比較到缺口對稱
@@ -33,21 +44,13 @@ Piaget 切掉的，正是連接此兩種集體性的中介操作：magical 作�
 
 ```mermaid
 flowchart TB
-    subgraph Problem["對稱的兩個困境"]
-        S["Spielrein 在發展學中的沒落<br/>有身體→詞，無社會→意識<br/>kinesthetic 被刪，只剩精神分析<br/>起點：Species-We"]
-        V["Vygotsky 的 affect in concept 困境<br/>有詞→意識，無身體→詞<br/>perezhivanie bodyless<br/>起點：Social Collective"]
-    end
-    subgraph Hinge["樞紐"]
-        P["Piaget 一九二〇—一九二三<br/>刪 magical / 改寫無意識 / 去身體化"]
-    end
-    subgraph Method["三角互證"]
-        M1["發生學追溯<br/>引文對照"]
-        M2["結構同構<br/>方法對方法"]
-        M3["互探<br/>現象有/機制無"]
-    end
-    S & V --> P
-    P --> M1 & M2 & M3
-    M1 & M2 & M3 -->|"一個系統兩個邊界"| S & V
+    S["Spielrein<br/>身體→詞 ✓ · 詞→社會 ✗<br/>Species-We"]
+    V["Vygotsky<br/>詞→意識 ✓ · 身體→詞 ✗<br/>Social Collective"]
+    P["Piaget 1920–23<br/>切斷中介"]
+    C["一個系統 · 兩個邊界<br/>三角互證"]
+    S --> P
+    V --> P
+    P --> C
 ```
 
 ---
@@ -124,9 +127,9 @@ Affect in concept 則是 catharsis 之後的出現。Vygotsky 在一九三〇年
 
 ```mermaid
 flowchart LR
-    D["毀滅<br/>舊單位解體"] --> R["Recoding<br/>charge 換 carrier"]
-    R --> N1["Spielrein: Species-We<br/>We 永恆質料<br/>Background 常在<br/>Destruction as Becoming"]
-    R --> N2["Vygotsky: Social Collective<br/>社會形式<br/>Foreground 決定<br/>Catharsis → Affect in Concept"]
+    D["毀滅<br/>舊單位解體"] --> R["Recoding"]
+    R --> S["Spielrein<br/>種—我們<br/>Destruction"]
+    R --> V["Vygotsky<br/>社會集體<br/>Catharsis → Affect in Concept"]
 ```
 
 ---
@@ -160,20 +163,10 @@ Vygotsky 的 threshold 可提煉為單位失效、領域入口與派生。單位
 正是在此意義上，Spielrein 的 substrate 與 Vygotsky 的 unconscious 是同一背景層在門檻前後的兩種狀態。門檻前為平行滋養態，常在而非過去；門檻後為凍結排除態，被前景排除而凍結。Timeless 源頭無法直接進入 developmental，必須經由背景層翻譯為 kinesthetic images、affect 等 developmental 產物，再進入詞與意識。
 
 ```mermaid
-flowchart LR
-    subgraph Hdef["Horizon 三謂詞"]
-        H1["融合<br/>水=空氣<br/>區分失效"]
-        H2["回歸<br/>尋求溶解<br/>吸引子"]
-        H3["平行<br/>double encoding<br/>同時並行"]
-    end
-    subgraph Tdef["Threshold 三謂詞"]
-        T1["單位失效<br/>word meaning<br/>無法分析情感"]
-        T2["領域入口<br/>思維→意識<br/>新單位"]
-        T3["派生<br/>immobile point<br/>被生產"]
-    end
-    Hdef -.->|"操作化"| O1["timeless = before-object<br/>對象範疇尚不存在"]
-    Tdef -.->|"操作化"| O2["developmental = after-object<br/>曾是對象但被排除"]
-    O1 & O2 --> S["同一 background 背景層<br/>門檻前後的兩種狀態<br/>平行滋養 vs 凍結排除"]
+flowchart TB
+    H["Horizon<br/>融合 · 回歸 · 平行"] --> O1["timeless<br/>before-object"]
+    T["Threshold<br/>單位失效 · 入口 · 派生"] --> O2["developmental<br/>after-object"]
+    O1 & O2 --> S["同一背景層<br/>平行滋養 vs 凍結排除"]
 ```
 
 ---
@@ -190,11 +183,9 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    H["Horizon<br/>timeless<br/>We/Species<br/>before-object"]
-    S["Substrate<br/>平行軌<br/>翻譯器<br/>donne la sève"]
-    T["Threshold<br/>developmental<br/>I/Height<br/>after-object"]
-    H --> S --> T
-    H -.-|"不同軸線<br/>不直接相連"| T
+    H["Horizon<br/>timeless · We"] --> S["Substrate<br/>翻譯器"]
+    S --> T["Threshold<br/>developmental · I"]
+    H -.-> T
 ```
 
 系統同一性在此獲得精確定義：不在階段同一，不在時間體制同一，而在四重不變量。第一，同一載體，詞在兩端皆被否定為外部標籤，Spielrein 的「the word did not mean an action, it was the action itself」與 Vygotsky 的「The word is comparable to the living cell... a unit of sound and meaning」共享同一本體論承諾。第二，同一操作，黏著與雜交在兩端以不同名稱出現，Spielrein 的 perseveration、crossing 與 Vygotsky 的 chain、diffuse、pseudoconcept 是同一發生學操作的不同顯現。第三，同一情感引擎，情感在兩端皆為跨越的操作子，Spielrein 的 affect drives persistence 與 Vygotsky 的「Freedom: the affect in the concept」是同一情感在不同載體上的連續運動。第四，同一背景層的兩種狀態，substrate 與 unconscious 是同一層前後的平行滋養與凍結排除。四重中任一項被證偽，系統同一性即被動搖。

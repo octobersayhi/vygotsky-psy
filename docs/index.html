@@ -177,6 +177,41 @@
     article.content { box-shadow: none; border: none; padding: 0; }
     .layout { display: block; }
   }
+
+  /* Citations */
+  article.content q, article.content .citation {
+    background: #f0fdfa; border-left: 3px solid #14b8a6; padding: 2px 6px; border-radius: 4px;
+    font-style: italic; color: #134e4a; font-size: 0.95em;
+  }
+  article.content blockquote { position: relative; }
+  article.content blockquote::before {
+    content: '❝'; position: absolute; left: 8px; top: 6px; font-size: 18px; color: #99f6e4; line-height: 1;
+  }
+  article.content blockquote p { padding-left: 18px; }
+  /* Glossary tooltips */
+  .gloss { border-bottom: 1px dotted #7c3aed; cursor: help; position: relative; }
+  .gloss:hover::after {
+    content: attr(data-tip); position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%);
+    background: #1f2937; color: white; padding: 8px 10px; border-radius: 8px; font-size: 12px;
+    line-height: 1.5; white-space: normal; width: 260px; z-index: 30; box-shadow: 0 4px 16px rgba(0,0,0,0.2);
+    pointer-events: none;
+  }
+  .gloss:hover::before {
+    content: ''; position: absolute; left: 50%; bottom: 100%; transform: translateX(-50%) translateY(6px);
+    border: 6px solid transparent; border-top-color: #1f2937; z-index: 31;
+  }
+  @media (max-width: 768px) {
+    .gloss:hover::after { width: 200px; font-size: 11px; }
+  }
+  /* Glossary box in article */
+  article.content blockquote.glossary {
+    background: #faf5ff; border-left-color: #a78bfa; font-size: 13.5px; line-height: 1.7;
+  }
+  article.content blockquote.glossary strong { color: #6d28d9; }
+  /* Mermaid simplified */
+  .mermaid { font-size: 13px; }
+  .mermaid svg { max-width: 100% !important; }
+
 </style>
 </head>
 <body>
@@ -236,13 +271,24 @@
 </blockquote>
 <hr />
 <h2 id="_1">摘要</h2>
-<p>本論文重寫 Sabina Spielrein 與 Lev Vygotsky 關係的提問方式。不問兩人是否說了相似的話，而問為何兩人各自留下一個無法自行縫合的缺口，且缺口恰好互為對方的富餘。Spielrein 在發展心理學中的沒落，與 Vygotsky 晚期 affect in concept 的困境，是同一個歷史切斷的兩面。Spielrein 提供了從身體到詞的完整發生學弧線，卻在經由 Jean Piaget 的轉述後，只以精神分析的標籤被記住，發展學的身體—詞機制被抽空；Vygotsky 完成了從詞到意識的建構，卻在 affect in concept 與 perezhivanie 的關口留下 bodyless 的缺口，有公式而無操作。兩者的對稱不是偶然，而是 Piaget 在一九二〇至一九二三年間對中介鏈的主動刪改所致。</p>
-<p>本文進一步指出，此一切斷的樞紐在於起點的錯位。Vygotsky 的起點不是詞源學，而是社會集體，自我經由社會集體湧現；Spielrein 的起點則是種—我們（Species-We），自我經由種的溶解與重生而被構成。Piaget 切掉的正是連接此兩種集體性的中介操作。本文以文本發生學追溯證明切斷是引文可驗的事實，以結構同構證明被切斷的兩端共享同一操作與同一詞本體論，以互探證明兩人各自觸及對方的命題卻說不清對方的機制，從而證明切斷而非自足。Horizon 與 threshold 在此重寫中不再是兩條抽象邊界的名稱，而是兩個具體困境的代稱：horizon 指 Spielrein 那個被刪去 kinesthetic 後只剩精神分析的平行滋養層，threshold 指 Vygotsky 那個抵達詞義卻無法將情感縫入概念的門檻。兩者是一個系統的兩個邊界，經由同一背景層的前後狀態與載體鏈的翻譯而互補。</p>
-<p>為使哲學外觀的詞彙可驗，本文將 horizon 與 threshold 各提煉為三個謂詞，將 timeless 與 developmental 翻譯為 before-object 與 after-object 的心理操作，並以引文定義背景層。本文並以 Spielrein 的「Destruction as the Cause of Becoming」與 Vygotsky 的 catharsis 為對照，論證 affect in concept 作為 catharsis 之後的出現，三者在同一 recoding 操作下構成發生學的連續。</p>
-<p><strong>關鍵詞</strong>：Spielrein；Vygotsky；Piaget；horizon；threshold；kinesthetic；affect in concept；perezhivanie；catharsis；Destruction as the Cause of Becoming</p>
+<p>本論文重寫 Sabina Spielrein 與 Lev Vygotsky 關係的提問方式。不問兩人是否說了相似的話，而問為何兩人各自留下一個無法自行縫合的缺口，且缺口恰好互為對方的富餘。Spielrein 在發展心理學中的沒落，與 Vygotsky 晚期 <span class="gloss" data-tip="情感被納入概念而獲自由，與 <span class="gloss" data-tip="Vygotsky 1925 藝術心理學：情感經由形式被重寫">catharsis</span> 同屬 recoding">affect in concept</span> 的困境，是同一個歷史切斷的兩面。Spielrein 提供了從身體到詞的完整發生學弧線，卻在經由 Jean Piaget 的轉述後，只以精神分析的標籤被記住，發展學的身體—詞機制被抽空；Vygotsky 完成了從詞到意識的建構，卻在 <span class="gloss" data-tip="情感被納入概念而獲自由，與 <span class="gloss" data-tip="Vygotsky 1925 藝術心理學：情感經由形式被重寫">catharsis</span> 同屬 recoding">affect in concept</span> 與 <span class="gloss" data-tip="俄語 переживание，Vygotsky 晚期單位：環境與個人不可分的統一體，分子態，bodyless 結構">perezhivanie</span> 的關口留下 bodyless 的缺口，有公式而無操作。兩者的對稱不是偶然，而是 Piaget 在一九二〇至一九二三年間對中介鏈的主動刪改所致。</p>
+<p>本文進一步指出，此一切斷的樞紐在於起點的錯位。Vygotsky 的起點不是詞源學，而是社會集體，自我經由社會集體湧現；Spielrein 的起點則是種—我們（<span class="gloss" data-tip="種—我們，種的集體，永恆質料">Species-We</span>），自我經由種的溶解與重生而被構成。Piaget 切掉的正是連接此兩種集體性的中介操作。本文以文本發生學追溯證明切斷是引文可驗的事實，以結構同構證明被切斷的兩端共享同一操作與同一詞本體論，以互探證明兩人各自觸及對方的命題卻說不清對方的機制，從而證明切斷而非自足。Horizon 與 threshold 在此重寫中不再是兩條抽象邊界的名稱，而是兩個具體困境的代稱：horizon 指 Spielrein 那個被刪去 <span class="gloss" data-tip="身體—動覺意象，詞的身體基底，<span class="gloss" data-tip="法語「給予汁液」，指 kinesthetic images 滋養意識">donne la sève</span>（給予汁液）的樹液層">kinesthetic</span> 後只剩精神分析的平行滋養層，threshold 指 Vygotsky 那個抵達詞義卻無法將情感縫入概念的門檻。兩者是一個系統的兩個邊界，經由同一背景層的前後狀態與載體鏈的翻譯而互補。</p>
+<p>為使哲學外觀的詞彙可驗，本文將 horizon 與 threshold 各提煉為三個謂詞，將 timeless 與 developmental 翻譯為 <span class="gloss" data-tip="對象範疇尚不存在（timeless 的操作化）">before-object</span> 與 <span class="gloss" data-tip="曾是對象但被排除而凍結（developmental 的操作化）">after-object</span> 的心理操作，並以引文定義背景層。本文並以 Spielrein 的「<span class="gloss" data-tip="Spielrein 1912：毀滅作為生成之因">Destruction as the Cause of Becoming</span>」與 Vygotsky 的 <span class="gloss" data-tip="Vygotsky 1925 藝術心理學：情感經由形式被重寫">catharsis</span> 為對照，論證 <span class="gloss" data-tip="情感被納入概念而獲自由，與 catharsis 同屬 recoding">affect in concept</span> 作為 catharsis 之後的出現，三者在同一 recoding 操作下構成發生學的連續。</p>
+<p><strong>關鍵詞</strong>：Spielrein；Vygotsky；Piaget；horizon；threshold；<span class="gloss" data-tip="身體—動覺意象，詞的身體基底，<span class="gloss" data-tip="法語「給予汁液」，指 kinesthetic images 滋養意識">donne la sève</span>（給予汁液）的樹液層">kinesthetic</span>；affect in concept；<span class="gloss" data-tip="俄語 переживание，Vygotsky 晚期單位：環境與個人不可分的統一體，分子態，bodyless 結構">perezhivanie</span>；catharsis；<span class="gloss" data-tip="Spielrein 1912：毀滅作為生成之因">Destruction as the Cause of Becoming</span></p>
+<blockquote class="glossary">
+<p><strong>術語說明</strong>（首次出現時亦有懸浮提示）</p>
+<ul>
+<li><strong><span class="gloss" data-tip="俄語 переживание，Vygotsky 晚期單位：環境與個人不可分的統一體，分子態，bodyless 結構">perezhivanie</span></strong>（俄語 переживание，英譯 <em>emotional experience</em>）：Vygotsky 晚期核心單位，指環境與個人特質不可分的統一體——既是環境在個人身上的折射，也是個人對環境的體驗方式。本文強調其分子態（<em>microscopic, molecular</em>）與 <em>bodyless</em> 結構：有環境—自我的不可分性，卻無身體—詞的生成性。</li>
+<li><strong><span class="gloss" data-tip="身體—動覺意象，詞的身體基底，<span class="gloss" data-tip="法語「給予汁液」，指 kinesthetic images 滋養意識">donne la sève</span>（給予汁液）的樹液層">kinesthetic</span> images / kinesthetic substrate</strong>：Spielrein 指身體—動覺意象，詞的身體基底，以「<em>donne la sève</em>」（法語「給予汁液」）滋養意識思想的樹液層。</li>
+<li><strong>affect in concept</strong>：Vygotsky 晚期公式「<em>Freedom: the affect in the concept</em>」，指情感被納入概念而獲得自由，與早期 <em>catharsis</em> 同屬 <em>recoding</em>（情感換載體）。</li>
+<li><strong><span class="gloss" data-tip="頂峰心理學，concept = affect = will 的統一">acmeist</span> / <span class="gloss" data-tip="頂峰心理學，concept = affect = will 的統一">acmeist</span>ic psychology</strong>：Vygotsky 晚期以 Spinoza 為資源提出的「頂峰心理學」，主張 <em>concept = affect = will</em> 的統一。</li>
+<li><strong><span class="gloss" data-tip="種—我們，種的集體，永恆質料">Species-We</span> / <span class="gloss" data-tip="社會集體，人際間的集體，歷史形式">Social Collective</span></strong>：Spielrein 的種—我們（種的集體，永恆質料）vs Vygotsky 的社會集體（人際間的集體，歷史形式），兩種集體性。</li>
+<li><strong><span class="gloss" data-tip="對象範疇尚不存在（timeless 的操作化）">before-object</span> / <span class="gloss" data-tip="曾是對象但被排除而凍結（developmental 的操作化）">after-object</span></strong>：本文對 <em>timeless</em> / <em>developmental</em> 的操作化翻譯——前者指對象範疇尚不存在，後者指曾是對象但被排除而凍結。</li>
+</ul>
+</blockquote>
 <hr />
 <h2 id="_2">導論：從相似性比較到缺口對稱</h2>
-<p>既有文獻對 Spielrein 與 Vygotsky 的比較，多停留在相似性羅列：兩人都談詞，都談身體，都談無意識。這種比較無法解釋一個更基本的文獻事實：為何 Spielrein 在發展心理學中幾乎消失，只在精神分析史中以「毀滅作為生成之因」被提及；為何 Vygotsky 在晚期明確提出「Freedom: the affect in the concept」與「Spinoza's theory implicite contains the whole acmeistic psychology」，卻始終未能給出 affect 如何進入概念的操作，且 perezhivanie 始終帶有 bodyless 的痕跡。</p>
+<p>既有文獻對 Spielrein 與 Vygotsky 的比較，多停留在相似性羅列：兩人都談詞，都談身體，都談無意識。這種比較無法解釋一個更基本的文獻事實：為何 Spielrein 在發展心理學中幾乎消失，只在精神分析史中以「毀滅作為生成之因」被提及；為何 Vygotsky 在晚期明確提出「Freedom: the affect in the concept」與「Spinoza's theory implicite contains the whole <span class="gloss" data-tip="頂峰心理學，concept = affect = will 的統一">acmeist</span>ic psychology」，卻始終未能給出 affect 如何進入概念的操作，且 perezhivanie 始終帶有 bodyless 的痕跡。</p>
 <p>本論文主張，這兩個現象是同一個歷史切斷的兩面，而切斷的樞紐是 Piaget。Spielrein 在一九二二年《Papa and Mama》中給出的三階段與身體—詞機制，經由 Piaget 一九二三年《La pensée symbolique》的轉述，被刪去中介環節與身體基底，成為去身體化的 egocentric；Vygotsky 在一九三四年經由 Piaget 的鏡片接手 egocentric 並將其翻轉為「the process that leads to the emergence of egocentric speech is the mirror image of that suggested by Piaget」，所接手的已是被抽空的結構概念。於是，Spielrein 有身體而無社會—意識的完成，Vygotsky 有社會—意識而無身體的生成，兩人各自觸及對方的領域，卻各自說不清對方的機制。</p>
 <p>此一切斷的深層在於起點的根本差異。Vygotsky 的發生學起點不是詞的詞源，而是社會集體。他的基本律是：「Every function in the child's cultural development appears twice: first, on the social level, and later, on the individual level; first, between people (interpsychological) and then inside the child (intrapsychological)」。詞在此律中是社會互動的中介：「The word is the most direct manifestation of the historical nature of human consciousness. Consciousness is reflected in the word like the sun is reflected in a droplet of water. The word is what — in Feuerbach's words — is absolutely impossible for one person but possible for two」。更精確地，「Communication with another (an interpsychological function) is always eo ipso communication with oneself (i.e., an intrapsychological function): The latter is implicite contained in the first. That is, what is possible for two at the same time becomes possible for one」。自我經由社會集體湧現，詞是此湧現的載體。</p>
 <p>Spielrein 的起點則相反，不是社會集體，而是種—我們。她寫道：「I was led to believe that the main characteristic of the individual consists in being a 'dividual' [ein Dividuum]. The closer we get to conscious thinking, the more differentiated our mental representations; the deeper we enter into the unconscious, the more general, more [arche]typal they become. The depth of our psyche knows no 'I,' it only knows its summation, the 'We'; or the current I, viewed as an object, becomes subordinate to other similar objects」。在此，集體不是社會，而是種：「The collective psyche strives to turn the ego-psyche into an impersonal, [arche]typal one」，而生成是「The drowned ego-particle surfaces richer than before, adorned with new representations」。自我經由種的溶解與重生而被構成，詞是此溶解—重生的載體。</p>
@@ -250,21 +296,13 @@
 <p>為論證此一對稱，本文不引入外部哲學，亦不依賴實證測量，而是嚴格運用兩人自己的方法論進行互證。Spielrein 在《Some Analogies》中提出跨領域同律對照，兒童、失語症與夢在同一操作下顯現同一規律；Vygotsky 在《思維與言語》第五章與第七章提出以詞義為單位的發生學分析。以此方法對照兩人的困境，本身即是方法論的自我驗證。論證分三步：發生學追溯以引文證明 Piaget 所刪是文本事實，結構同構以方法對方法證明被切斷的兩端本屬同一操作，互探以現象有而機制無的分布證明切斷而非自足。三者構成三角互證，任一角被證偽則整體推翻。</p>
 <div class="mermaid">
 flowchart TB
-    subgraph Problem["對稱的兩個困境"]
-        S["Spielrein 在發展學中的沒落<br/>有身體→詞，無社會→意識<br/>kinesthetic 被刪，只剩精神分析<br/>起點：Species-We"]
-        V["Vygotsky 的 affect in concept 困境<br/>有詞→意識，無身體→詞<br/>perezhivanie bodyless<br/>起點：Social Collective"]
-    end
-    subgraph Hinge["樞紐"]
-        P["Piaget 一九二〇—一九二三<br/>刪 magical / 改寫無意識 / 去身體化"]
-    end
-    subgraph Method["三角互證"]
-        M1["發生學追溯<br/>引文對照"]
-        M2["結構同構<br/>方法對方法"]
-        M3["互探<br/>現象有/機制無"]
-    end
-    S & V --> P
-    P --> M1 & M2 & M3
-    M1 & M2 & M3 -->|"一個系統兩個邊界"| S & V
+    S["Spielrein<br/>身體→詞 ✓ · 詞→社會 ✗<br/><span class="gloss" data-tip="種—我們，種的集體，永恆質料">Species-We</span>"]
+    V["Vygotsky<br/>詞→意識 ✓ · 身體→詞 ✗<br/><span class="gloss" data-tip="社會集體，人際間的集體，歷史形式">Social Collective</span>"]
+    P["Piaget 1920–23<br/>切斷中介"]
+    C["一個系統 · 兩個邊界<br/>三角互證"]
+    S --> P
+    V --> P
+    P --> C
 </div>
 <hr />
 <h2 id="spielrein-kinesthetic">第一章 Spielrein 在發展學中的沒落：被刪去的 kinesthetic，只剩精神分析</h2>
@@ -294,7 +332,7 @@ flowchart TB
 <p>Piaget 將 egocentrism 作為整個理論的基石：「This is the cornerstone of the entire structure」，「All characteristics of the child's thinking flow from it」。其發生學序列為 autistic → egocentric → socialized/logic，並明確表述為：「Genetically, then, autistic thinking is the first form of thinking. Logic arises comparatively late. Egocentric thought occupies a position between them」，且「all egocentrism is designed by its structure to stand half-way between autistic and socialized thought」。在此框架中，egocentric speech 被賦予量化指標與功能定義：「if it be granted that the first three categories of child language as we have laid them down are egocentric, then the thought of... 54-60 percent」，「The chief function of this egocentric language is, therefore, to serve as an accompaniment to the thought or action of the individual」，且「Egocentric speech is completely subordinated to egocentric motives and nearly incomprehensible to others. It is the child's verbal dream」。其發生學解釋為雙重根源：「in two factors; first (following psychoanalytic theory) in the child's asociality, and, second, in the unique character of his practical activity」，「Now, this activity is unquestionably egocentric and egotistical. The social instinct is late in developing」。最終命運是消亡：「egocentric speech gradually dies off」。Piaget 自己也承認此為假說：「Piaget often says that his position on the intermediate nature of egocentric thought is hypothetical」，但仍以此作為統一解釋 syncretism 等全部兒童邏輯特徵的完整鏈條。形式上，鏈條是閉合的。</p>
 <p>Spielrein 的批評從下切斷此完整性。她的序列為 autistic → magical → social，magical 以「the belief in the 'omnipotence of thought'」為核心，且「the word did not mean an action, it was the action itself」。對她而言，Piaget 的 autistique → égocentrique → social 是刪去中介的轉述。Magical 正是連接自體封閉與社會指向的唯一操作，承載詞的超額意義與召喚能力；刪去後，詞如何從身體動作長為社會符號的發生學機制消失，kinesthetic images 作為「Subconscious visual–kinetic images nourish [donne la sève] our conscious thoughts」的滋養基底失去位置。Piaget 同時將動態無意識溶為功能連續體，情感—身體的生成維度隨之脫落。結果是鏈條在形式上完整，在材料上空洞：有中介之名，無中介之實。</p>
 <p>Vygotsky 的批評從上翻轉此完整性。其批評不是補充，而是方向翻轉：「the process that leads to the emergence of egocentric speech is the mirror image of that suggested by Piaget」。其基本律是社會起源：「Every function in the child's cultural development appears twice: first, on the social level, and later, on the individual level; first, between people (interpsychological) and then inside the child (intrapsychological)」。據此三點反駁：第一，起點錯誤。Piaget 以兒童 asociality 解釋 egocentrism，Vygotsky 則主張「Social forms of behavior are more complex and develop earlier in the child; becoming individual, they drop to functioning according to simpler laws」，社會是起點而非終點。第二，功能錯誤。Piaget 認為 egocentric speech 無功能、伴隨性、終將消亡；Vygotsky 實驗證明相反：「Our children showed an increase in average levels of egocentric speech in any situation where some difficulty was encountered」，且「Egocentric speech is originally social. It does not fade away, but becomes internal speech. It is internalized」，具有計劃與自我調節功能。第三，命運錯誤。Piaget 的 dies off 被改為內化為 inner speech，成為思維的中介。</p>
-<p>兩種批評恰好互補：Spielrein 指其無根——無身體—詞的生成；Vygotsky 指其無源——無社會—詞的內化。所指皆為同一個被切斷的中介鏈。Piaget 試圖以 egocentric 為中介給出從自體到社會的完整發生學，但此中介同時抽空了下的身體生成與上的社會內化。由此可見，切斷並非偶然遺漏，而是在 Piaget 自認為已完成之處的結構性失敗。正是此一失敗位置，使兩種生成理論得以在斷裂的兩端各自發展為替代：Spielrein 的 Destruction as the Cause of Becoming 與 Vygotsky 的 catharsis，正是對同一中介缺口的兩種回答。</p>
+<p>兩種批評恰好互補：Spielrein 指其無根——無身體—詞的生成；Vygotsky 指其無源——無社會—詞的內化。所指皆為同一個被切斷的中介鏈。Piaget 試圖以 egocentric 為中介給出從自體到社會的完整發生學，但此中介同時抽空了下的身體生成與上的社會內化。由此可見，切斷並非偶然遺漏，而是在 Piaget 自認為已完成之處的結構性失敗。正是此一失敗位置，使兩種生成理論得以在斷裂的兩端各自發展為替代：Spielrein 的 <span class="gloss" data-tip="Spielrein 1912：毀滅作為生成之因">Destruction as the Cause of Becoming</span> 與 Vygotsky 的 catharsis，正是對同一中介缺口的兩種回答。</p>
 <hr />
 <h2 id="destruction-as-the-cause-of-becoming-catharsis-affect-in-concept-catharsis">第四章 兩種生成理論的對位：Destruction as the Cause of Becoming 與 Catharsis，及 affect in concept 作為 catharsis 之後</h2>
 <p>Spielrein 與 Vygotsky 各自提出一種生成理論，兩者在操作上同構，在集體位置上互補，而 Vygotsky 的 affect in concept 則是 catharsis 之後的延續。</p>
@@ -304,9 +342,9 @@ flowchart TB
 <p>Affect in concept 則是 catharsis 之後的出現。Vygotsky 在一九三〇年代初的筆記中明確將兩者連為同一機制的延續：「Freedom: the affect in the concept」與「The affect is overcome by the affect. And the basis is not thinking but desire」，以及「Spinoza's theory implicite contains the whole acmeistic psychology」與「To understand the affect is an active condition and is freedom」。如果說 catharsis 是情感經由藝術形式被重寫，那麼 affect in concept 就是情感經由概念形式被重寫。前者處理藝術中的情感轉化，後者處理思維中的情感轉化，兩者共享同一原則：情感不被消滅，而是被 recode 到新形式。此一延續在文本上可驗：Vygotsky 在《藝術心理學》後幾乎不再以 catharsis 為題，卻在筆記中以 Spinoza 的 affectus 重提同一問題，並以「concept = affect = will」的 acmeist 單位作為門檻後的新單位。Catharsis 因此不是被拋棄，而是被翻譯為 affect in concept，從美學的生成理論轉為意識的生成理論。</p>
 <div class="mermaid">
 flowchart LR
-    D["毀滅<br/>舊單位解體"] --> R["Recoding<br/>charge 換 carrier"]
-    R --> N1["Spielrein: Species-We<br/>We 永恆質料<br/>Background 常在<br/>Destruction as Becoming"]
-    R --> N2["Vygotsky: Social Collective<br/>社會形式<br/>Foreground 決定<br/>Catharsis → Affect in Concept"]
+    D["毀滅<br/>舊單位解體"] --> R["Recoding"]
+    R --> S["Spielrein<br/>種—我們<br/>Destruction"]
+    R --> V["Vygotsky<br/>社會集體<br/>Catharsis → Affect in Concept"]
 </div>
 <hr />
 <h2 id="_3">第五章 互探：兩人各自觸及對方的命題，卻說不清對方的機制</h2>
@@ -319,25 +357,15 @@ flowchart LR
 <h2 id="_4">第六章 為何哲學—心理學混語可操作化：三謂詞與背景層</h2>
 <p>Horizon 與 threshold 的哲學外觀常使讀者誤以為必須進入哲學演繹，實則兩詞皆為原文的操作性用語，指涉心理操作失效與轉換之處。本文將各提煉為三個謂詞，使定義逐句可驗。</p>
 <p>Spielrein 的 horizon 可提煉為融合、回歸與平行。融合指在 horizon 處水與空氣、上與下、時間與地點的區分失效。她給出的意象是：「I am standing on a lonely stone pier, extending far outwards into a dark sea. At the horizon, the waters of the sea meld with the equally darkly tinted mystical black air」，解讀為伸入暗海即進入暗問題，水與空氣融合象徵母親領域中所有時間地點融為一體、上下無界。她對此的精確定義是：「The sea [das Meer] ('the mother')... is the obscure problem, the state in which there is neither time, nor place, nor opposites... because it is still undifferentiated, not creating the new, therefore an eternal Being [ein ewig seiendes Etwas]」。回歸指已分化表象尋求溶解回原初母親：「In this Ur-mother (the unconscious) all the representations that once differentiated themselves from her seek to be dissolved」，horizon 因此不是牆而是吸引子，Weltschmerz 即由此推導，每個粒子渴望回到原初狀態而新生成在張力中湧現。平行指每個意識思維伴隨無意識對應物，將意識結果翻譯回無意識語言，例為「I’m thinking of my plan to mend a rugged spot」對「I see myself planing a piece of wood」，兩軌同時並行，horizon 是兩軌延伸後相遇之處。綜合三謂詞，horizon 是向後溶解線同時作為源頭，作為永恆存在「simultaneously lives in the present, the past, and the future, i.e., outside of time」而持續滋養當下意識，不是被拋在身後的過去階段，而是平行軌。</p>
-<p>Vygotsky 的 threshold 可提煉為單位失效、領域入口與派生。單位失效指 word meaning 作為概括與微觀宇宙在結構上無法分析情感，證據是他在第七章結尾將研究帶到門檻後立即轉向 Spinoza 的 affectus，要求把莎士比亞翻譯成概念語言，這不是材料不足而是單位的結構限制。領域入口指 threshold 同時是一個研究的終點與另一個研究的起點，門檻前是思維與詞、概括與概念形成，門檻後是意識系統包括系統結構、語義結構、情感、意志與自由，需要的新單位是 concept 等於 affect 等於 will 的 acmeist 單位。派生指 Vygotsky 意義的無意識不是先存深度而是被意識發展生產出來的被排除者：「Repression to the unconscious means in the first place exclusion from the general course of development: an immobile point in development. The unconscious does not develop」，且「The relationship consciousness—the unconscious takes shape around the age of seven years. The history of child morals is the history of the basic suppressing agent」，被排除者如月亮般「shines with borrowed light」與「the dream... shines with borrowed light, just like the moon」，門檻是此種無意識的生產線，門檻前無此義的無意識，只有 substrate，門檻後才有。此處需澄清，否定的是 Freud 式的先存深度 Tiefenpsychologie，不等於否定 Spielrein 意義的先存深度即 substrate 與 before-object，兩者是同一背景層前後狀態，並不矛盾。</p>
-<p>哲學詞彙向心理操作的翻譯在此完成。Timeless 操作化為 before-object，對象範疇尚不存在的狀態，如 Spielrein 的「there is neither time, nor place, nor opposites... therefore an eternal Being」；developmental 操作化為 after-object，曾是對象但被排除的狀態，如 Vygotsky 的「exclusion from the general course of development: an immobile point」。前者是前範疇的，後者是後範疇的，兩者不是同一區分的兩面，而是不同區分在同一背景層上的前後狀態。</p>
+<p>Vygotsky 的 threshold 可提煉為單位失效、領域入口與派生。單位失效指 word meaning 作為概括與微觀宇宙在結構上無法分析情感，證據是他在第七章結尾將研究帶到門檻後立即轉向 Spinoza 的 affectus，要求把莎士比亞翻譯成概念語言，這不是材料不足而是單位的結構限制。領域入口指 threshold 同時是一個研究的終點與另一個研究的起點，門檻前是思維與詞、概括與概念形成，門檻後是意識系統包括系統結構、語義結構、情感、意志與自由，需要的新單位是 concept 等於 affect 等於 will 的 acmeist 單位。派生指 Vygotsky 意義的無意識不是先存深度而是被意識發展生產出來的被排除者：「Repression to the unconscious means in the first place exclusion from the general course of development: an immobile point in development. The unconscious does not develop」，且「The relationship consciousness—the unconscious takes shape around the age of seven years. The history of child morals is the history of the basic suppressing agent」，被排除者如月亮般「shines with borrowed light」與「the dream... shines with borrowed light, just like the moon」，門檻是此種無意識的生產線，門檻前無此義的無意識，只有 substrate，門檻後才有。此處需澄清，否定的是 Freud 式的先存深度 Tiefenpsychologie，不等於否定 Spielrein 意義的先存深度即 substrate 與 <span class="gloss" data-tip="對象範疇尚不存在（timeless 的操作化）">before-object</span>，兩者是同一背景層前後狀態，並不矛盾。</p>
+<p>哲學詞彙向心理操作的翻譯在此完成。Timeless 操作化為 before-object，對象範疇尚不存在的狀態，如 Spielrein 的「there is neither time, nor place, nor opposites... therefore an eternal Being」；developmental 操作化為 <span class="gloss" data-tip="曾是對象但被排除而凍結（developmental 的操作化）">after-object</span>，曾是對象但被排除的狀態，如 Vygotsky 的「exclusion from the general course of development: an immobile point」。前者是前範疇的，後者是後範疇的，兩者不是同一區分的兩面，而是不同區分在同一背景層上的前後狀態。</p>
 <p>所謂背景層，需特別澄清，因為它最易被誤讀為哲學隱喻或 Freud 式深度。背景層不是隱喻，而是心理操作層，指詞成為概括與概念之前的那個身體—情感基底，功能是滋養前景而非被前景決定。Spielrein 以極具體意象定義它：「Subconscious visual–kinetic images nourish [donne la sève] our conscious thoughts. Without them our thought would be uprooted, 'stripped down'」，如樹液之於樹。前景則是經由詞展開的概括、系統與意識建構，兩者關係不是深度與表面的垂直關係，而是圖與底的關係。Vygotsky 在晚期筆記反覆以 figure-ground 描述高級機能對低級機能的關係，低級機能不是被消滅而是退為背景，以收縮與從屬形式繼續存在於新結構之中。背景層因此不是被超越的過去，而是當下仍在運行的平行軌。</p>
 <p>正是在此意義上，Spielrein 的 substrate 與 Vygotsky 的 unconscious 是同一背景層在門檻前後的兩種狀態。門檻前為平行滋養態，常在而非過去；門檻後為凍結排除態，被前景排除而凍結。Timeless 源頭無法直接進入 developmental，必須經由背景層翻譯為 kinesthetic images、affect 等 developmental 產物，再進入詞與意識。</p>
 <div class="mermaid">
-flowchart LR
-    subgraph Hdef["Horizon 三謂詞"]
-        H1["融合<br/>水=空氣<br/>區分失效"]
-        H2["回歸<br/>尋求溶解<br/>吸引子"]
-        H3["平行<br/>double encoding<br/>同時並行"]
-    end
-    subgraph Tdef["Threshold 三謂詞"]
-        T1["單位失效<br/>word meaning<br/>無法分析情感"]
-        T2["領域入口<br/>思維→意識<br/>新單位"]
-        T3["派生<br/>immobile point<br/>被生產"]
-    end
-    Hdef -.->|"操作化"| O1["timeless = before-object<br/>對象範疇尚不存在"]
-    Tdef -.->|"操作化"| O2["developmental = after-object<br/>曾是對象但被排除"]
-    O1 & O2 --> S["同一 background 背景層<br/>門檻前後的兩種狀態<br/>平行滋養 vs 凍結排除"]
+flowchart TB
+    H["Horizon<br/>融合 · 回歸 · 平行"] --> O1["timeless<br/>before-object"]
+    T["Threshold<br/>單位失效 · 入口 · 派生"] --> O2["developmental<br/>after-object"]
+    O1 & O2 --> S["同一背景層<br/>平行滋養 vs 凍結排除"]
 </div>
 <hr />
 <h2 id="timeless-developmental">第七章 如何論證 timeless 與 developmental 同屬一個系統</h2>
@@ -347,11 +375,9 @@ flowchart LR
 <p>第三個支點是翻譯器的存在。Timeless 源頭無法直接進入 developmental，必須經由背景層翻譯為 kinesthetic images 與 affect 等產物，再經由載體鏈身體經聲音、網絡到詞再到概念，每一步皆是 timeless 質料被 developmental 形式 recoding 的過程。沒有翻譯器，horizon 質料無法進入 threshold 建構工地；沒有 horizon 供料，threshold 建構則空轉。</p>
 <div class="mermaid">
 flowchart LR
-    H["Horizon<br/>timeless<br/>We/Species<br/>before-object"]
-    S["Substrate<br/>平行軌<br/>翻譯器<br/>donne la sève"]
-    T["Threshold<br/>developmental<br/>I/Height<br/>after-object"]
-    H --> S --> T
-    H -.-|"不同軸線<br/>不直接相連"| T
+    H["Horizon<br/>timeless · We"] --> S["Substrate<br/>翻譯器"]
+    S --> T["Threshold<br/>developmental · I"]
+    H -.-> T
 </div>
 <p>系統同一性在此獲得精確定義：不在階段同一，不在時間體制同一，而在四重不變量。第一，同一載體，詞在兩端皆被否定為外部標籤，Spielrein 的「the word did not mean an action, it was the action itself」與 Vygotsky 的「The word is comparable to the living cell... a unit of sound and meaning」共享同一本體論承諾。第二，同一操作，黏著與雜交在兩端以不同名稱出現，Spielrein 的 perseveration、crossing 與 Vygotsky 的 chain、diffuse、pseudoconcept 是同一發生學操作的不同顯現。第三，同一情感引擎，情感在兩端皆為跨越的操作子，Spielrein 的 affect drives persistence 與 Vygotsky 的「Freedom: the affect in the concept」是同一情感在不同載體上的連續運動。第四，同一背景層的兩種狀態，substrate 與 unconscious 是同一層前後的平行滋養與凍結排除。四重中任一項被證偽，系統同一性即被動搖。</p>
 <hr />
@@ -493,6 +519,17 @@ flowchart LR
     }, 200);
   });
 })();
+</script>
+
+<script>
+// Glossary tap for mobile
+document.querySelectorAll('.gloss').forEach(el => {
+  el.addEventListener('click', (e) => {
+    e.preventDefault();
+    // Toggle a class for mobile tooltip visibility
+    el.classList.toggle('active');
+  });
+});
 </script>
 </body>
 </html>
