@@ -76,6 +76,12 @@ Vygotsky 的發生學起點與 Spielrein 形成對照。如果說 Spielrein 從�
 
 這一缺口不是能力的不足，而是歷史切斷的痕跡。他經由 Piaget 接手的 egocentric 已是去身體化的結構概念，身體在 Vygotsky 處以直接性在場，卻在生成性上缺席。社會集體的起點因此失去身體的根，正如 Spielrein 的種—我們失去社會的完成。
 
+詞在此呈現兩種存在方式，恰為同一發生學弧線的兩端。Spielrein 所謂「the word did not mean an action, it was the action itself」，指詞在種—我們層次的根部存在：詞尚未分化為標籤，詞與身體動作、與感覺是同一件事，無主客、無時空，即「The sea [das Meer] ('the mother')... is the obscure problem, the state in which there is neither time, nor place, nor opposites... because it is still undifferentiated, not creating the new, therefore an eternal Being [ein ewig seiendes Etwas]」所描述的未分化狀態。Magical 作為「a word contains an extra significance which conjures up reality」與「the belief in the 'omnipotence of thought'」，動態無意識作為「L'inconscient est donc actif... Il y a une barrière entre l'inconscient et la conscience」的情感引擎，kinesthetic 作為「Subconscious visual–kinetic images nourish [donne la sève] our conscious thoughts」的身體基底，皆屬此根部層次，詞即身體，尚未成為社會符號。
+
+Vygotsky 所謂「The word is the end that crowns the deed」，則指詞在社會集體層次的冠部存在。他在《思維與言語》末章引 Goethe 對《聖經》「In the beginning was the word」的改寫「In the beginning was the deed」，再引 Gutsman 的評註：「Gutsman's argument is that the word is a higher stage in man's development than the highest manifestation of action. He is right. The word did not exist in the beginning. In the beginning was the deed. The formation of the word occurs nearer the end than the beginning of development. The word is the end that crowns the deed」。Crowns 在此不是取代，而是加冕、完成：deed 為根，word 為冠，詞不在起點而在發展的近終點才形成，詞不是對行動的標籤，而是對行動的重組與提升，即「The word is comparable to the living cell... a unit of sound and meaning」與「word meaning... a unity of generalization and social interaction」及「word meaning is a microcosm of consciousness」所定義的概括與社會互動的統一。兩者不矛盾，而是同一載體在不同層次上的兩種本體論：前者說詞作為身體，後者說詞作為意識；前者說詞即質料，後者說詞為形式。Vygotsky 自己強調此發生學含義：「The connection between thought and word is not a primal connection that is given once and forever. It arises in development and itself develops」。詞與行動的統一不是前提，而是發展的成就。
+
+Spielrein 未能使詞進入 social 的後果，在其框架中即是詞滯留於 magical：帶「a word contains an extra significance which conjures up reality」，持「the belief in the 'omnipotence of thought'」，未成為可概括、可交流的概念，仍屬「The depth of our psyche knows no 'I,' it only knows its summation, the 'We'」的種—我們，而非 Vygotsky 的「is absolutely impossible for one person but possible for two」的社會集體。詞因此保持私人性與超額性，未能成為意識的微觀宇宙。
+
 ---
 
 ## 第三章 樞紐：Piaget 所刪為何——中介鏈的切斷是引文可驗的事實
